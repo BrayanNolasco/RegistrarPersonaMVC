@@ -28,7 +28,7 @@ public class Recibir extends HttpServlet {
             throws ServletException, IOException {
      String dui = request.getParameter("txtDui");
         String apellidos = request.getParameter("txtApellidos");
-        String nombres = request.getParameter("txtNombres");
+        String nombres = request.getParameter("txtNombre");
         
         Persona person = new Persona(); //Al crear este objeto automaticamente se conecta a la BD
         person.setDui(dui);

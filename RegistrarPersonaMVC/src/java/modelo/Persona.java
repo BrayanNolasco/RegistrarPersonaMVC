@@ -1,6 +1,7 @@
 package modelo;
 
 import java.sql.*;
+import java.util.ArrayList; // Importar clase ArrayList
 import java.util.logging.Level;
 import java.util.logging.Logger;
 public class Persona {
@@ -25,6 +26,15 @@ public class Persona {
             Logger.getLogger(Persona.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+   
+    
+    public Persona(String dui, String apellidos, String nombres) {
+        this.dui = dui;
+        this.apellidos = apellidos;
+        this.nombres = nombres;
+    }
+    
     
     public boolean insertarDatos(){
     try{
@@ -40,7 +50,21 @@ public class Persona {
 }
     return false;
 }
-
+public ArrayList<Persona> consultarRegistros(){
+    ArrayList<Persona> person = new ArrayList(); //crear el array de almacenamiento de tipo persona
+    try{
+        String miQuery = "select * from tb_persona;"; //definir la consulta
+        state = cnn.createStatement(); //crear el boton para la consulta
+        result = state.executeQuery(miQuery); //ejecutar la consulta
+        while(result.next()) { //recorre todo el resultSet y almacena en cada fila los registros encontrados
+                                 //el nombre debe ser asi como esta en la tabla de la base de datos
+        person.add(new Persona(result.getString("dui_persona"), result.getString("apellidos_persona"), result.getString("nombres_Persona")));
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(Persona.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return person; //independientemente encuentro o no registro retorna el objeto person
+}
     // Generar los metódos get y set para los atributos
 
     public String getDui() {
