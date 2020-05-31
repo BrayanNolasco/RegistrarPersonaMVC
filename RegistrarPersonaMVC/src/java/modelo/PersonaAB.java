@@ -4,7 +4,7 @@ import java.sql.*;
 import java.util.ArrayList; // Importar clase ArrayList
 import java.util.logging.Level;
 import java.util.logging.Logger;
-public class Persona {
+public class PersonaAB {
      //Atributos de la clase
     String dui;
     String apellidos;
@@ -17,20 +17,20 @@ public class Persona {
     
    //Constructor vacio de la clase tipo público
    // El constructor lo utilizaremos para conectar con la base de datos. 
-    public Persona() {
+    public PersonaAB() {
         try {
             Class.forName("com.mysql.jdbc.Driver");//Driver de la base de datos
             cnn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bd_recurso_humano?zeroDateTimeBehavior=convertToNull", "root", "");//url de la BD,user,pass 
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Persona.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PersonaAB.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(Persona.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PersonaAB.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
    
     
-    public Persona(String dui, String apellidos, String nombres) {
+    public PersonaAB(String dui, String apellidos, String nombres) {
         this.dui = dui;
         this.apellidos = apellidos;
         this.nombres = nombres;
@@ -47,22 +47,22 @@ public class Persona {
         return true;
     }
     } catch (SQLException ex) {
-    Logger.getLogger(Persona.class.getName()).log(Level.SEVERE, null, ex);
+    Logger.getLogger(PersonaAB.class.getName()).log(Level.SEVERE, null, ex);
 }
     return false;
 }
-public ArrayList<Persona> consultarRegistros(){
-    ArrayList<Persona> person = new ArrayList(); //crear el array de almacenamiento de tipo persona
+public ArrayList<PersonaAB> consultarRegistros(){
+    ArrayList<PersonaAB> person = new ArrayList(); //crear el array de almacenamiento de tipo persona
     try{
         String miQuery = " select * from tb_persona; "; //definir la consulta
         state = cnn.createStatement(); //crear el boton para la consulta
         result = state.executeQuery(miQuery); //ejecutar la consulta
         while(result.next()){ //recorre todo el resultSet y almacena en cada fila los registros encontrados
                                  //el nombre debe ser asi como esta en la tabla de la base de datos
-        person.add(new Persona(result.getString("dui_persona"), result.getString("apellidos_persona"), result.getString("nombre_persona")));
+        person.add(new PersonaAB(result.getString("dui_persona"), result.getString("apellidos_persona"), result.getString("nombre_persona")));
         }
     } catch (SQLException ex) {
-        Logger.getLogger(Persona.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(PersonaAB.class.getName()).log(Level.SEVERE, null, ex);
     }
     return person; //independientemente encuentro o no registro retorna el objeto person
 }

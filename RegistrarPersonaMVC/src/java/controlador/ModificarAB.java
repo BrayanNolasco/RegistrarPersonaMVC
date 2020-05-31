@@ -1,25 +1,46 @@
+
 package controlador;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.Persona;
+import modelo.PersonaAB;
 
-public class Mostrar extends HttpServlet {
 
+@WebServlet(name = "Modificar", urlPatterns = {"/Modificar"})
+public class ModificarAB extends HttpServlet {
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         Persona p = new Persona(); //Conectar a la BD
-        ArrayList<Persona> personas = new ArrayList();
-        personas = p.consultarRegistros();//Consulta los registros y los almacena en nuevo array llamado personas
-        request.getSession().setAttribute("personas", personas); //Asignar valores a la sesion
-        request.getRequestDispatcher("mostrartodo.jsp").forward(request, response);
+         PrintWriter out = response.getWriter();
+         PersonaAB p = new PersonaAB();
+           //mostrar los registros
+          
+        
+         if (request.getParameter("actualizar")!=null) {
+             
+             
+                p.modificar(request.getParameter("txtNombres"),request.getParameter("txtApellidos"),request.getParameter("txtDui"));
+             response.sendRedirect("ModificarAB.jsp?mag=Registro actualizado¡!");
+
+            
+        }else{
+                 response.sendRedirect("ModificarAB.jsp?mag=ERROR al actualizado¡!");
+             }
     }
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

@@ -1,14 +1,14 @@
 package controlador;
 
 import java.io.IOException;
-import modelo.Persona;
+import modelo.PersonaAB;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class Recibir extends HttpServlet {
+public class RecibirAB extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -30,15 +30,15 @@ public class Recibir extends HttpServlet {
         String apellidos = request.getParameter("txtApellidos");
         String nombres = request.getParameter("txtNombre");
         
-        Persona person = new Persona(); //Al crear este objeto automaticamente se conecta a la BD
+        PersonaAB person = new PersonaAB(); //Al crear este objeto automaticamente se conecta a la BD
         person.setDui(dui);
         person.setApellidos(apellidos);
         person.setNombres(nombres);
         
         if(person.insertarDatos() == true){ //Recuerda que era booleana
-            request.getRequestDispatcher("exito.jsp").forward(request,response);
+            request.getRequestDispatcher("exitoAB.jsp").forward(request,response);
         }else{
-            request.getRequestDispatcher("noexito.jsp").forward(request, response);
+            request.getRequestDispatcher("noexitoAB.jsp").forward(request, response);
         }
     }
 
