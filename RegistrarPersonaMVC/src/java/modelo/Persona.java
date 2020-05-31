@@ -53,12 +53,12 @@ public class Persona {
 public ArrayList<Persona> consultarRegistros(){
     ArrayList<Persona> person = new ArrayList(); //crear el array de almacenamiento de tipo persona
     try{
-        String miQuery = "select * from tb_persona;"; //definir la consulta
+        String miQuery = " select * from tb_persona; "; //definir la consulta
         state = cnn.createStatement(); //crear el boton para la consulta
         result = state.executeQuery(miQuery); //ejecutar la consulta
-        while(result.next()) { //recorre todo el resultSet y almacena en cada fila los registros encontrados
+        while(result.next()){ //recorre todo el resultSet y almacena en cada fila los registros encontrados
                                  //el nombre debe ser asi como esta en la tabla de la base de datos
-        person.add(new Persona(result.getString("dui_persona"), result.getString("apellidos_persona"), result.getString("nombres_Persona")));
+        person.add(new Persona(result.getString("dui_persona"), result.getString("apellidos_persona"), result.getString("nombre_persona")));
         }
     } catch (SQLException ex) {
         Logger.getLogger(Persona.class.getName()).log(Level.SEVERE, null, ex);
