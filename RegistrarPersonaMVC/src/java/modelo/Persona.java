@@ -12,6 +12,7 @@ public class Persona {
     
     Connection cnn;
     Statement state;
+    PreparedStatement ps;
     ResultSet result;
     
    //Constructor vacio de la clase tipo público
@@ -65,6 +66,30 @@ public ArrayList<Persona> consultarRegistros(){
     }
     return person; //independientemente encuentro o no registro retorna el objeto person
 }
+
+public void modificar(String nom, String ape, String dni) {
+        
+          try {
+
+           
+            ps = cnn.prepareStatement("UPDATE tb_persona SET apellidos_persona='"+ape+"', nombre_persona='"+nom+"' WHERE dui_persona='"+dni+"'");
+            ps.executeUpdate();
+         } catch (Exception ex) {
+             System.out.println("ERROR"+ex.getMessage());
+         }
+          
+      }
+    
+      public void eliminar(String dui) throws SQLException{
+         try {
+             
+             ps = cnn.prepareStatement("delete from tb_persona where dui_persona='"+dui+"'");
+         ps.executeUpdate();
+         } catch (Exception ex) {
+             System.out.println("ERROR"+ex.getMessage());
+         }
+         
+     }
     // Generar los metódos get y set para los atributos
 
     public String getDui() {
@@ -90,5 +115,7 @@ public ArrayList<Persona> consultarRegistros(){
     public void setNombres(String nombres) {
         this.nombres = nombres;
     }
+
+   
    
 }

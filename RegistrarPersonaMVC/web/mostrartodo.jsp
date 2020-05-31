@@ -24,6 +24,7 @@
 		</tr>
 		  <c:forEach var="listaTotal" items="${sessionScope.personas}">
 			<tr>
+                            
 				<td><c:out value="${listaTotal.dui}"/></td>
 				<td><c:out value="${listaTotal.apellidos}"/></td>
 				<td><c:out value="${listaTotal.nombres}"/></td>
