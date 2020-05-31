@@ -13,7 +13,7 @@
             
      <h1>Actualizar </h1>
      <%=request.getParameter("mag")%>
-     <form action="Modificar" method="post">
+     <form action="ModificarAB" method="post">
 		<table>
 			<tr>
 				<td><label>DUI</label></td>

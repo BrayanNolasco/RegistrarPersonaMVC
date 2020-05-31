@@ -16,13 +16,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.PersonaAB;
-
-
-@WebServlet(name = "Eliminar", urlPatterns = {"/Eliminar"})
+/**
+ *
+ * @author Adonis
+ */
+@WebServlet(name = "EliminarAB", urlPatterns = {"/EliminarAB"})
 public class EliminarAB extends HttpServlet {
 
-    
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+   protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
          PrintWriter out = response.getWriter();
@@ -33,7 +34,7 @@ public class EliminarAB extends HttpServlet {
                
              p.eliminar(dui);
              
-             response.sendRedirect("eliminar.jsp?mag=Registro eliminado¡!");
+             response.sendRedirect("eliminarAB.jsp?mag=Registro eliminado¡!");
             
         }
     }
@@ -53,7 +54,7 @@ public class EliminarAB extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(Eliminar.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EliminarAB.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -71,7 +72,7 @@ public class EliminarAB extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(Eliminar.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EliminarAB.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
