@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import modelo.PersonaAB;
 
 
-@WebServlet(name = "Modificar", urlPatterns = {"/Modificar"})
+@WebServlet(name = "ModificarAB", urlPatterns = {"/ModificarAB"})
 public class ModificarAB extends HttpServlet {
 
     /**
@@ -34,7 +34,7 @@ public class ModificarAB extends HttpServlet {
              
              
                 p.modificar(request.getParameter("txtNombres"),request.getParameter("txtApellidos"),request.getParameter("txtDui"));
-             response.sendRedirect("ModificarAB.jsp?mag=Registro actualizado¡!");
+             response.sendRedirect("ModificarAB.jsp");
 
             
         }else{
